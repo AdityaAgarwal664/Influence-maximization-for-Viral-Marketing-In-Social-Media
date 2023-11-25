@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Free Trial - Viral Marketer</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f9fa; /* Light gray background */
+            color: #333;
+            text-align: center;
+        }
+
+        header {
+            background-color: #007bff;
+            color: #fff;
+            text-align: center;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            font-size: 36px;
+            margin-bottom: 10px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        label {
+            display: block;
+            text-align: left;
+            font-size: 18px;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        input[type="number"],
+        select,
+        input[type="file"] {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+
+        .submit-button {
+            background-color: #28a745;
+            color: #fff;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 5px;
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        .submit-button:hover {
+            background-color: #218838;
+        }
+
+        .scroll-button {
+            background-color: #ffc107;
+            color: #333;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 5px;
+            font-size: 24px;
+            cursor: pointer;
+            margin-top: 30px;
+        }
+
+        .scroll-button:hover {
+            background-color: #e0a800;
+        }
+
+        .scrollable-content {
+            max-height: 400px;
+            overflow-y: scroll;
+            margin-top: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: #fff;
+            margin-top: 20px;
+        }
+
+        table, th, td {
+            border: 1px solid #ddd;
+            color: #333;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #007bff;
+            color: #fff;
+            font-weight: bold;
+        }
+
+        @media (max-width: 600px) {
+            table {
+                border: 0;
+            }
+
+            table thead {
+                display: none;
+            }
+
+            table tr {
+                margin-bottom: 10px;
+                display: block;
+            }
+
+            table td {
+                border-bottom: 1px solid #ddd;
+                display: block;
+            }
+
+            table td::before {
+                content: attr(data-label);
+                font-weight: bold;
+                float: left;
+            }
+        }
+
+        /* Slider styles */
+        .slider-container {
+            width: 100%;
+            overflow: hidden;
+            margin-top: 20px;
+        }
+
+        .slider-content {
+            display: flex;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+        }
+
+        .slider-item {
+            flex: 0 0 auto;
+            width: 100%;
+            scroll-snap-align: start;
+            box-sizing: border-box;
+            padding: 0 10px;
+        }
+
+        /* Graph and table visibility */
+        .graph-table-container {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .graph-table-container .graph,
+        .graph-table-container .table {
+            width: 100%;
+            display: none;
+        }
+
+        .graph-table-container .graph.active,
+        .graph-table-container .table.active {
+            display: block;
+        }
+
+        .graph-table-toggle {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .graph-table-toggle:hover {
+            background-color: #0056b3;
+        }
+        
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Viral Marketer</h1>
+    </header>
+    <div class="container">
+        <form action="/process" method="POST" enctype="multipart/form-data">
+            <label for="required-influencers">Required Influencers:</label>
+            <input type="number" id="required-influencers" name="required-influencers" min="10" max="100" required>
+
+            <label for="csv-file">Provide your dataset (CSV only):</label>
+            <input type="file" id="csv-file" name="csv-file" accept=".csv" required>
+            <p id="file-error" style="color: red; display: none;">Please provide a CSV file.</p>
+            <label for="algorithmSelect">Select Algorithm:</label>
+            <select id="algorithmSelect" name="algorithmSelect">
+                <option value="selectAlgo">Select Algorithm</option>
+                <option value="Greedy">Greedy Algorithm</option>
+                <option value="degreeCentrality">Degree Centrality</option>
+                <option value="PageRank">Page Rank</option>
+            </select>
+
+            <button type="submit" class="submit-button">Submit</button>
+        </form>
+    </div>
+
+    
+    <h1>Matplotlib Graph</h1>
+    <div class="slider-container">
+        <div class="slider-content">
+            <div class="slider-item graph">
+
+                <video width="100%" height="100%"  id="myvideo" autoplay>
+                    <source src="{{ url_for('get_video') }}" type="video/mp4">
+                    
+                </video>
+            </div>
+        </div>
+    </div>
+   
+
+    
+    
+
+    {% if selected_seed_nodes|safe %}
+        <div class="table">
+            <h1>Result</h1>
+            <table>
+                <tr>
+                    <th>Selected Seed Nodes</th>
+                </tr>
+                <tr>
+                    <td>
+                        <ul>
+                            {% for node in selected_seed_nodes %}
+                            <li>{{ node }}</li>
+                            {% endfor %}
+                        </ul>
+                    </td>
+                </tr>
+                <tr>
+                    <th>Influenced Nodes</th>
+                </tr>
+                <tr>
+                    <td>
+                        <ul>
+                            {% for node in influenced_nodes %}
+                            <li>{{ node }}</li>
+                            {% endfor %}
+                        </ul>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    
+
+    {% else %}
+
+    {% endif %}
+    
+    {% if table2|safe %}
+    
+        
+        <div class="slider-content">
+            <div class="slider-item connection">
+                <h1>Connection Table</h1>
+                {{ table2|safe }}
+            </div>
+        </div>
+    
+    {% else %}
+    {% endif %}
+     
+
+        {% if image2 %}
+    
+
+        <h1>Pie Connection Graph</h1>
+        <img src="{{image2}}" >
+        {% else %}
+
+        {% endif %}
+        
+        {% if image3 %}   
+            <h1>Bar Connection Graph</h1>
+        <img src="{{image3}}" >
+        {% else %}
+
+        {% endif %}
+
+        {% if image4 %}
+        <h1>Scatter Connection Graph</h1>
+        <img src="{{image4}}" >
+        {% else %}
+
+        {% endif %}
+
+        {% if image5 %}
+        <h1>Line Connection Graph</h1>
+        <img src="{{image5}}" >
+        {% else %}
+
+        {% endif %}
+
+        {% if image6 %}
+        <h1>Heat Map Connection Graph</h1>
+        <img src="{{image6}}" >
+        {% else %}
+
+        {% endif %}
+
+        {% if table|safe %}
+        <div class="container mt-4">
+            <h1>CSV Table</h1>
+            {{ table|safe }}
+            {% else %}
+
+            {% endif %}
+            
+        </div>
+        <script>
+            const video = document.getElementById("myVideo");
+            video.playbackRate = 0.25;
+        </script>
+    </body>
+
+    </html>
+
