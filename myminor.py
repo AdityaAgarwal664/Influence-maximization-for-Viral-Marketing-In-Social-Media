@@ -5,16 +5,18 @@ import os
 import glob
 import networkx as nx
 import numpy as np
+import matplotlib
+matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 import base64
 import cv2
 import time
 
-app=Flask(__name__)
+
 
 def perform_im(data,budget,algo):
     image_dir='static\images'
-    output_video_path='static\video\greedy_algo_video.mp4'
+    output_vid_path=r'static\video\greedy_algo_video.mp4'
     G=nx.Graph()
     for _,row in data.iterrows():
         G.add_edge(row['Source'],row['Target'])
@@ -43,6 +45,7 @@ def perform_im(data,budget,algo):
             max_node=None
             max_influence=-1
             for node in graph.nodes():
+                
                 if node not in seed_nodes:
                     temp_seed=seed_nodes.copy()
                     temp_seed.append(node)
@@ -52,10 +55,14 @@ def perform_im(data,budget,algo):
                         max_node=node
             seed_nodes.append(max_node)
             influence_nodes=icm(graph,seed_nodes)
-            node_colors=['red' if node in seed_nodes else 'green' if node in influence_nodes else 'blue ' for node in G.nodes()]
+            node_colors=['red' if node in seed_nodes else 'green' if node in influence_nodes else 'blue' for node in G.nodes()]
             plt.figure(figsize=(12,8))
             pos=nx.spring_layout(G,seed=40,k=0.15,iterations=100)
-            nx.draw(G,pos,labels={node:'' for node in G.nodes()},node_color=node_colors,node_size=140,font_size=9,font_color='black',alpha=0.8,linewidths=0.5,edge_color='gray',with_labels=False)
+            nx.draw(
+                G, pos, labels={node: '' for node in G.nodes()}, node_color=node_colors, node_size=150, font_size=8, font_color='black',
+                alpha=0.8,linewidths=0.5, edge_color='gray', with_labels=False
+                )
+            
             node_labels_pos={k:(v[0]-0.05,v[1]) for k,v in pos.items()}
             nx.draw_networkx_labels(G,node_labels_pos,font_size=7,font_color='black')
             plt.title('Your infuencers through Greedy')
@@ -68,7 +75,7 @@ def perform_im(data,budget,algo):
             plt.savefig(image_path,format='png')
             plt.axis('off')
             image_counter+=1
-        
+            plt.close()
         return seed_nodes
     
     def visualize_g(graph,seed_nodes,influenced_nodes,image_counter):
@@ -87,7 +94,8 @@ def perform_im(data,budget,algo):
         image_path=os.path.join(image_dir,f"pic_{image_counter:03d}.png")
         plt.savefig(image_path,format='png')
         plt.axis('off')
-    
+        plt.close()
+
     def deg_cen(graph,k):
         influence_nodes=set()
         seed_nodes=[]
@@ -152,7 +160,7 @@ def perform_im(data,budget,algo):
         exit()
     
     fourcc=cv2.VideoWriter_fourcc(*'H264')
-    out=cv2.VideoWriter(output_video_path,fourcc,1.5,(width,height))
+    out=cv2.VideoWriter(output_vid_path,fourcc,1.5,(width,height))
 
     for image in images:
         image_path=os.path.join(image_dir,image)
@@ -169,13 +177,13 @@ def perform_im(data,budget,algo):
     plt.title("Pie Chart on connections")
     plt.axis('equal')
     plt.savefig("static\images\pie.jpg")
-
+    
     plt.figure(figsize=(10,6))
     plt.plot(dd['Source node'],dd['Count'],marker='o',linestyle='-',color='b')
     plt.title("Line Chart on connections")
     plt.xlabel('Source')
     plt.ylabel('Connections')
-    plt.grid()
+    plt.grid(True)
     plt.axis('equal')
     plt.savefig("static\images\line.jpg")
 
@@ -184,9 +192,9 @@ def perform_im(data,budget,algo):
     plt.title("Bar Chart on connections")
     plt.xlabel('Source')
     plt.ylabel('Connections')
-    plt.grid()
+    plt.grid(axis='y')
     plt.axis('equal')
-    plt.savefig("static\images\bar.jpg")
+    plt.savefig(r"static\images\bar.jpg")
 
     plt.figure(figsize=(10,6))
     plt.scatter(dd['Source node'],dd['Count'],marker='o',color='r')
@@ -208,6 +216,7 @@ def perform_im(data,budget,algo):
 
     return selected_seed_nodes,influenced_nodes
 
+app=Flask(__name__)
 site=Blueprint('site',__name__,template_folder='template')
 app.register_blueprint(site)
 result=[]
@@ -245,11 +254,14 @@ def process():
     
     csv_file.save('temp.csv')
     data=pd.read_csv('temp.csv')
+    connection_counts=data['Source'].value_counts().reset_index()
+    connection_counts.columns=['Source node','Count']
+    df=pd.DataFrame(connection_counts)
+    new=df.to_csv('newtemp.csv')
     selected_seed_nodes,influenced_nodes=perform_im(data,budget,algo)
     
-    connection_counts=data['Source'].value_counts().reset_index()
-    connection_counts.columns=['Source Node','Count']
-    df=pd.DataFrame('newtemp.csv')
+    
+    #df=pd.DataFrame('newtemp.csv')
 
     
     ok=pd.read_csv('newtemp.csv')
@@ -271,4 +283,6 @@ def get_video():
 
 if __name__ == '__main__':
     app.run(debug=True)
+
+
     

@@ -64,6 +64,7 @@ def perform_influence_maximization(data, budget, algo):
 
     def greedy_algorithm(graph, k, p=0.1, max_iterations=1000):
         seed_nodes = []
+        influenced_nodes=set(seed_nodes)
         image_counter = 0
         for _ in range(k):
             max_node = None
@@ -77,8 +78,9 @@ def perform_influence_maximization(data, budget, algo):
                         max_influence = influence
                         max_node = node
             seed_nodes.append(max_node)
-            influenced_nodes = independent_cascade_model(graph,seed_nodes)
-        
+            influence_nodes = independent_cascade_model(graph,seed_nodes)
+            influenced_nodes.update(influence_nodes)
+
             node_colors = ['red' if node in seed_nodes else 'blue' if node in influenced_nodes else 'yellow' for node in G.nodes()]
 
             plt.figure(figsize=(12, 8))
@@ -112,11 +114,10 @@ def perform_influence_maximization(data, budget, algo):
 
        
         
+        influenced_nodes = [item for item in influenced_nodes if item not in seed_nodes]
 
         
-
-        
-        return seed_nodes
+        return seed_nodes,influenced_nodes
     
 
     def visualize_graph(graph, seed_nodes, influenced_nodes, image_counter):
@@ -194,8 +195,8 @@ def perform_influence_maximization(data, budget, algo):
 
     if (algo=="Greedy"):
     
-        selected_seed_nodes = greedy_algorithm(G, budget)
-        influenced_nodes= independent_cascade_model(G, selected_seed_nodes)
+        selected_seed_nodes,influenced_nodes = greedy_algorithm(G, budget)
+        #influenced_nodes= independent_cascade_model(G, selected_seed_nodes)
    
         data = list(zip(selected_seed_nodes,influenced_nodes))
 
@@ -243,16 +244,22 @@ def perform_influence_maximization(data, budget, algo):
         
 
     dd=pd.read_csv('newtemp.csv')
-    source_nodes = dd['Source Node']
-    counts = dd['Count']
-    #plt.figure(figsize=(8, 8))
-    plt.pie(counts, labels=source_nodes, autopct='%1.1f%%', startangle=140, colors=plt.cm.Paired(range(len(source_nodes))))
-    plt.title('Pie Chart on Connections')
-    plt.axis('equal')  
+
+    filtered_df = dd[dd['Source Node'].isin(selected_seed_nodes)]
+
+    
+    filtered_df.to_csv("filtered_newtemp.csv", index=False)
+    
+    source_nodes=filtered_df['Source Node']
+    counts=filtered_df['Count']
+    plt.figure(figsize=(15,10))
+    plt.pie(counts,labels=source_nodes,autopct='%1.1f%%',startangle=140,colors=plt.cm.Paired(range(len(source_nodes))))
+    plt.title("Pie Chart on connections")
+    plt.axis('equal')
     plt.savefig("static\images\pie.jpg")
 
-    plt.figure(figsize=(10, 6))
-    plt.plot(dd['Source Node'], dd['Count'], marker='o', linestyle='-', color='b')
+    plt.figure(figsize=(15, 7))
+    plt.plot(filtered_df['Source Node'], filtered_df['Count'], marker='o', linestyle='-', color='b')
     plt.title('Line Chart: Source vs Connection')
     plt.xlabel('Source')
     plt.ylabel('Connection')
@@ -260,8 +267,8 @@ def perform_influence_maximization(data, budget, algo):
     plt.savefig("static/images/line.jpg")
     #plt.show()
 
-    plt.figure(figsize=(10, 6))
-    plt.bar(dd['Source Node'], dd['Count'], color='c')
+    plt.figure(figsize=(15, 7))
+    plt.bar(filtered_df['Source Node'], filtered_df['Count'], color='c')
     plt.title('Bar Chart: Source vs Connection')
     plt.xlabel('Source')
     plt.ylabel('Connection')
@@ -269,8 +276,8 @@ def perform_influence_maximization(data, budget, algo):
     plt.savefig("static/images/bar.jpg")
     #plt.show()
 
-    plt.figure(figsize=(10, 6))
-    plt.scatter(dd['Source Node'], dd['Count'], color='r', marker='o')
+    plt.figure(figsize=(15, 7))
+    plt.scatter(filtered_df['Source Node'], filtered_df['Count'], color='r', marker='o')
     plt.title('Scatter Chart: Source vs Connection')
     plt.xlabel('Time')
     plt.ylabel('Connection')
@@ -284,10 +291,10 @@ def perform_influence_maximization(data, budget, algo):
     df = pd.read_csv('newtemp.csv')
 
 
-    heatmap_data = df.pivot(index='Source Node', columns='Count', values='Count')
+    heatmap_data = filtered_df.pivot(index='Source Node', columns='Count', values='Count')
 
 
-    #plt.figure(figsize=(10, 8))
+    plt.figure(figsize=(15, 15))
     sns.heatmap(heatmap_data, cmap='YlGnBu', annot=True, fmt='g', linewidths=.5)
     plt.title('Heatmap of Source Nodes and Counts')
     
@@ -371,7 +378,8 @@ def process():
     image5_url = 'static/images/line.jpg'
     image6_url = 'static/images/heatmap.jpg'
     table_html = data.to_html(classes='table table-bordered', index=False)
-    return render_template('free1.html',video=video_path,image2=image2_url,image3=image3_url,image4=image4_url,image5=image5_url,image6=image6_url,table=table_html,table2=table2_html,selected_seed_nodes=selected_seed_nodes, influenced_nodes=influenced_nodes)
+    numinf=len(influenced_nodes)
+    return render_template('free1.html',video=video_path,num=numinf,image2=image2_url,image3=image3_url,image4=image4_url,image5=image5_url,image6=image6_url,table=table_html,table2=table2_html,selected_seed_nodes=selected_seed_nodes, influenced_nodes=influenced_nodes)
 
 @app.route('/get_video')
 def get_video():
