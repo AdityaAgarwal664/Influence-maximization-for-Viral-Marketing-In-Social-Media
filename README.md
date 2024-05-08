@@ -790,7 +790,7 @@ The influence maximization algorithms used (Greedy, Degree Centrality, and PageR
 are basic and might not be suitable for large graphs. More advanced algorithms or
 optimizations could be explored for better performance and accuracy.
 
-Chapter-6: Findings, Conclusion and Future Work
+<h2>Chapter-6: Findings, Conclusion and Future Work</h2>
 6.1. Findings:
 The findings based on the program are as follows –
 1. Web Application Structure:
