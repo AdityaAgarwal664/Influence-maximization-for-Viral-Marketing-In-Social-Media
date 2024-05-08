@@ -1,7 +1,7 @@
-SOCIAL MEDIA ANALYSIS USING GRAPH THEORY FOR
-VIRAL MARKETING
+<h1>SOCIAL MEDIA ANALYSIS USING GRAPH THEORY FOR
+VIRAL MARKETING</h1>
 
-Chapter-1: Introduction
+<h2>Chapter-1: Introduction</h2>
 1.1 General Introduction
 Social media platforms have become an integral part of our daily lives, generating
 massive datasets of interactions between users. Analyzing these datasets is crucial for
@@ -31,7 +31,7 @@ selecting optimal initial seed nodes, modeling message propagation, allocating
 marketing budget, measuring actual propagation. Solving this problem will enable
 businesses to maximize marketing impact and achieve their goals efficiently in the
 dynamic landscape of social media.
-9
+
 1.3 Significance & Novelty of the problem
 The significance and novelty of the problem lie in the unique challenges it addresses and the
 potential impact it can have on marketing effectiveness in the realm of social media. Here's a
@@ -62,7 +62,7 @@ Novelty:
 ● Sophisticated Social Media Analysis Framework: The development of a sophisticated
 framework for social media analysis is a novel approach, indicating an advanced and
 comprehensive solution to the challenges posed.
-10
+
 ● Incorporation of Influence Maximization: The incorporation of influence maximization
 strategies distinguishes this problem, showcasing an innovative approach to leveraging social
 network dynamics for marketing purposes.
@@ -103,8 +103,8 @@ various graph visualizations, and tables summarizing influential nodes and conne
 providing a holistic view of the analysis.
 5. Community Interaction: The Flask framework allows for easy sharing and deployment,
 fostering potential collaboration and community contributions.
-12
-Chapter-2: Literature Survey
+
+<h2>Chapter-2: Literature Survey</h2>
 2.1 Summary of papers studied:
 2.1.1 Influence Maximization Frameworks, Performance, Challenges, and Directions on Social
 Network: A Theoretical Study:
@@ -137,7 +137,7 @@ and Challenges" delves into the intricate domain of influence maximization withi
 networks. Authored by Yuxin Ye, Yunliang Chen, and Wei Han, the review navigates through
 various theories, methodologies, and challenges inherent in the pursuit of understanding and
 optimizing influence dynamics in the context of social networks.
-13
+
 The authors embark on an exploration of theoretical foundations, unraveling the fundamental
 concepts that underpin influence maximization. Through their work, they shed light on the
 diverse methods employed in the field, providing insights into the techniques and strategies
@@ -166,7 +166,7 @@ practical understanding of how these concepts operate in real-world scenarios.
 Yuxin Ye et al.'s literature review might provide a broader exploration of various methodologies
 found in the existing body of work, potentially including algorithms like Greedy, Degree Centrality,
 and PageRank.
-14
+
 Performance Metrics: The paper by Singh et al. may detail performance metrics used to assess the
 effectiveness of influence maximization frameworks, contributing to the empirical understanding of
 these approaches.
@@ -184,8 +184,8 @@ theory.
 In summary, the two papers, when integrated, likely present a rich tapestry of theoretical
 foundations, methodological approaches, performance evaluations, and discussions on challenges
 and future avenues in the domain of influence maximization within social networks.
-15
-Chapter-3: Requirement Analysis and Solution Approach
+
+<h3>Chapter-3: Requirement Analysis and Solution Approach</h3>
 3.1 Overall Description of the project
 The overall description of the project involves the development of a sophisticated social media analysis
 framework that leverages influence maximization strategies to enhance marketing effectiveness. The
@@ -214,8 +214,7 @@ Graphs and charts, such as pie charts, line charts, bar charts, scatter charts, 
 visually analyze and present the results.
 Output:
 The output includes a video representation of the influence maximization process using the chosen
-algorithm (e.g., Greedy algorithm).
-16
+
 Additional visualizations, such as pie charts, line charts, bar charts, scatter charts, and heatmaps, provide
 insights into the connections and influence nodes.
 Data Handling:
@@ -244,7 +243,7 @@ Influence Maximization Algorithms:
 Greedy Algorithm: Develop a Greedy algorithm for seed node selection.
 Degree Centrality Algorithm: Implement an algorithm based on degree centrality.
 PageRank Algorithm: Implement an algorithm based on PageRank.
-17
+
 Visualization:
 ● Description: Provide visual representations of the influence maximization process.
 ● Sub-requirements:
@@ -275,7 +274,7 @@ Performance:
 Algorithms should execute efficiently, even with large social network datasets.
 Minimize response times for user interactions.
 Scalability:
-18
+
 ● Description: Design the application to handle growing datasets and user loads.
 ● Sub-requirements:
 Optimize algorithms and data structures for scalability.
@@ -308,7 +307,7 @@ Create a logical database structure to store connection data.
 Implement tables for nodes, edges, and relevant attributes.
 Querying:
 ● Description: Enable efficient querying of the database for algorithm execution.
-19
+
 ● Sub-requirements:
 Develop queries to extract relevant data for influence maximization algorithms.
 Optimize queries for performance.
@@ -336,9 +335,8 @@ The idea is to make the best decision at each step without considering the conse
 that decision on future steps. In the context of influence maximization, the Greedy algorithm
 is used to find a set of seed nodes in a social network to maximize the spread of influence
 [2]. It’s implementation can be explained in the following steps –
-20
-Code Snippet:
-Fig. 1
+
+
 Explanation:
 1. Initialization:
 ♦ seed_nodes: An empty list to store the selected seed nodes.
@@ -376,9 +374,8 @@ nodes in the graph.
 The degree centrality algorithm in the program aims to select seed nodes for influence
 maximization based on their degree centrality in the graph [1]. Here's how the algorithm is
 implemented –
-22
-Code Snippet:
-Fig. 2
+
+
 Explanation:
 I. Initialization:
 ♦ influence_nodes: A set to keep track of nodes influenced by the
@@ -422,9 +419,8 @@ documents, such as the World Wide Web, with the purpose of measuring its relativ
 importance within the set. The algorithm is iterative, and the importance of a page is
 influenced not only by the number of links to it but also by the importance of the pages
 linking to it. [2]
-24
-Code Snippet:
-Fig. 3
+
+
 Explanation:
 I. Initialization:
 ♦ influence_nodes: A set to keep track of nodes influenced by the
@@ -461,14 +457,14 @@ Key Use Cases:
 2. Upload CSV File: User uploads a CSV file containing the network data.
 3. Click on "Process": User initiates the influence maximization process.
 4. Generate Video: Application generates a video illustrating the influence maximization process.
-27
+
 5. Display Images: Application displays images (graphs) during the process.
 6. Other Functions: Additional functionalities such as data analysis and visualization.
 4.1.2. Sequence Diagram
 Fig. 5 (a)
 4.1.3 Flow Chart
 Fig. 5 (b)
-28
+
 1. Actors:
 ● User: Represents the end user accessing the web application.
 2. Components:
@@ -502,7 +498,7 @@ creates various charts and saves chart images.
 ● The final response is sent back to the Browser, and the sequence concludes.
 This sequence diagram provides a visual representation of the flow of interactions and dependencies
 among the components involved in the Flask application.
-29
+
 4.2. Implementation details and issues
 The implementation of the program can be broken down into major components as follows:
 1. Input:
@@ -525,75 +521,34 @@ which works in the following steps –
 ⮚ Red: Seed Node
 ⮚ Blue: Influenced Nodes
 ⮚ Yellow: Non-active Nodes
-30
-Code Snippet:
-Fig. 6
-Output Generated:
-Fig. 7
+
+
 II. Result Table
 The results of influence maximization, including selected seed nodes and their influenced
 nodes, are stored in the variables files selected_seed_nodes and influenced_nodes.
 Code Snippet:
-Fig. 8
-31
-Output Generated:
-Fig. 9
+
 III. Connection Counts Pie Chart:
 This pie chart visualizes the distribution of connection counts among source nodes in the
 social network i.e it displays the names of influencers v/s percentage of connections.
 Code Snippet:
-Fig. 10
-32
+
 Output Generated:
 Fig. 11
 IV. Connection Counts Line Graph:
 This line chart shows the relationship between source nodes and their connection counts
 in the social network over time and is a names of influencers v/s total number of
 connections graph.
-Code Snippet:
-Fig. 12
-33
+
 Output Generated:
 Fig. 13
 V. Connection Counts Scatter Chart:
 This scatter chart visualizes the relationship between source nodes and their connection
 counts in a two-dimensional space.
-Code Snippet:
-Fig. 14
-34
-Output Generated:
-Fig. 15
-VI. Connection Counts Bar Chart:
-This bar chart represents the connection counts for each source node in the social
-network.
-Code Snippet:
-Fig. 16
-35
-Output Generated:
-Fig. 17
-VII. Heatmap:
-The heatmap provides a visual representation of the relationship between source nodes
-and their connection counts in a tabular format.
-Code Snippet:
-Fig. 18
-36
-Output Generated:
-Fig. 19
-VIII. Connection Table:
-The connection counts are visualized through the pie chart, line chart, bar chart, scatter
-chart, and heatmap.
-Code Snippet:
-Fig. 20
-37
-Output Generated:
-Fig. 21
-IX. Your Table:
-The data of the csv file uploaded by the user is displayed through this table.
-Code Snippet:
-Fig. 22
-38
-Output Generated:
-Fig. 22
+
+
+
+
 4.3. Risk Analysis and Mitigation
 Risk analysis involves identifying potential risks that may impact the success of a project and
 implementing strategies to mitigate or manage those risks [2]. The following are some potential
@@ -609,7 +564,7 @@ datasets.
 ● Mitigation: Optimize the algorithms and use efficient data structures. Implement parallel
 processing if applicable. Test the program with varying dataset sizes to ensure reasonable
 performance.
-39
+
 3. Dependency Risks:
 ● Risk: The program relies on external libraries such as Flask, NetworkX, and Matplotlib, which
 may have updates or compatibility issues.
@@ -639,7 +594,7 @@ video creation and provide informative error messages. Include fallback mechanis
 video generation fails.
 8. Deployment Risks:
 ● Risk: Deployment to production environments may introduce unforeseen issues.
-40
+
 ● Mitigation: Perform thorough testing in staging environments before deployment. Have a
 rollback plan in case issues arise. Implement continuous integration and continuous deployment
 (CI/CD) pipelines for automated testing.
@@ -653,8 +608,8 @@ debugging. Provide user-friendly error messages when applicable.
 setup instructions and usage guidelines. Update documentation as the code evolves.
 Regularly reviewing and updating the risk analysis, along with proactive mitigation measures, helps
 ensure the robustness and reliability of the program.
-41
-Chapter-5: Testing
+
+<h2>Chapter-5: Testing</h2>
 5.1. Testing Plan:
 This is a general testing plan which can be followed for influence maximization:
 1. Unit Testing:
@@ -688,7 +643,7 @@ of results.
 ● Objective: Evaluate the program's efficiency and resource utilization.
 ● Activities:
 ● Measure the execution time for different algorithmic scenarios.
-42
+
 ● Assess the program's memory consumption, especially for large datasets.
 ● Evaluate the scalability by testing with progressively larger datasets.
 6. Compatibility Testing:
@@ -722,7 +677,7 @@ address issues early in the process.
 5.2. Component decomposition and type of testing required
 Component decomposition is a software design principle that involves breaking down a
 complex system into smaller, manageable parts or components . Each component has a
-43
+
 well-defined responsibility and interfaces with other components to achieve the overall
 functionality of the system [1]. In the program, we can identify several components as well as
 assess the types of testing they require:
@@ -739,35 +694,31 @@ presentation.
 ▪ Unit Testing: Verify functions related to graph creation and manipulation.
 ▪ Integration Testing: Check the interaction with algorithms and data
 visualization.
-Code Snippet:
-Fig. 23
+
 3) Influence Maximization Algorithms:
 ⮚ Responsibility: Implements various algorithms for influence maximization.
-44
+
 ⮚ Testing:
 ▪ Unit Testing: Ensure each algorithm produces correct results.
 ▪ Integration Testing: Verify the integration of algorithms with the graph structure.
-Code Snippet:
-Fig. 24
+
 4) Data Processing and Visualization:
 ⮚ Responsibility: Processes data, generates visualizations, and creates video
 output.
 ⮚ Testing:
 ▪ Unit Testing: Verify functions related to data processing and visualization.
 ▪ Integration Testing: Check the interaction with the Flask application.
-45
+
 Code Snippet:
-Fig. 25
+
 5) CSV Data Handling:
 ⮚ Responsibility: Reads and processes input data in CSV format.
 ⮚ Testing:
 ▪ Unit Testing: Verify functions related to reading and processing CSV data.
 ▪ Integration Testing: Check the integration with other components.
-Code Snippet:
-Fig. 26
+
 6) Video Generation (OpenCV):
-⮚ Responsibility: Combines images into a video file.
-46
+
 ⮚ Testing:
 ▪ Unit Testing: Verify functions related to video creation.
 ▪ Integration Testing: Check the integration with the Flask application.
@@ -779,16 +730,14 @@ Fig. 27
 ▪ Unit Testing: Verify functions related to chart generation.
 ▪ Integration Testing: Check the integration with the Flask application.
 Code Snippet:
-Fig. 28
+
 5.3. List of all test cases
 5.3.1. Greedy Algorithm Test Case:
 38 people got influenced by 15 influencers.
-47
-Fig. 29
+
 5.3.2. Degree Centrality Algorithm Test Case:
 80 people got influenced by 15 influencers.
-Fig. 30
-48
+
 5.3.3. Page Rank Algorithm Test Case:
 84 people got influenced by 15 influencers.
 Fig. 31
@@ -799,31 +748,29 @@ i. Error Handling in Flask Routes:
 In the Flask routes ('/process' and '/get_video'), there is some basic error handling
 using try-except blocks. If an exception occurs during the execution of the route, it will
 catch the exception and respond accordingly.
-49
+
 Code Snippet:
 Fig. 32
 Fig. 33
-50
+
 ii. File Handling:
 When reading and saving files, there is a basic error check to ensure that the required
 files exist. For example, the program checks if images and video files exist before
 attempting to remove them.
 This can be enhanced by handling specific file-related exceptions and providing
 meaningful error messages.
-Code Snippet:
-Fig. 34
+
 iii. Algorithm Execution:
 Inside the perform_influence_maximization function, the selected influence
 maximization algorithm is executed inside a try-except block. If an exception occurs
 during the algorithm's execution, it can be caught and handled appropriately.
 Code Snippet:
-Fig. 35
+
 iv. Error Page Rendering:
 In case of an exception, the program renders an 'error.html' template. Ensure that this
 template provides meaningful information about the error for debugging purposes.
 Code Snippet:
-Fig. 36
-51
+
 5.5. Limitations of the solution
 The intended solution which has been implemented in the program has some limitations and
 areas that could be improved:
@@ -842,7 +789,7 @@ for large graphs or many iterations.
 The influence maximization algorithms used (Greedy, Degree Centrality, and PageRank)
 are basic and might not be suitable for large graphs. More advanced algorithms or
 optimizations could be explored for better performance and accuracy.
-52
+
 Chapter-6: Findings, Conclusion and Future Work
 6.1. Findings:
 The findings based on the program are as follows –
@@ -877,7 +824,7 @@ The application expects a CSV file as input, representing a graph structure.
 ● Users can input parameters like budget and algorithm choice through a form.
 9. File Management:
 The code creates and manages directories for storing images and videos.
-53
+
 10. Limitations:
 Identified limitations include minimal error handling, lack of security measures, basic graph
 algorithms, and a simplistic user interface.
@@ -906,7 +853,7 @@ Optimize the application for scalability, enabling the analysis of larger graphs
 efficiently.
 Implement parallel processing or distributed computing techniques to handle
 computationally intensive tasks.
-54
+
 D. Real-world Data Integration:
 Extend the application to work with real-world datasets, providing users with the ability
 to analyze and visualize influence maximization in diverse domains.
@@ -925,14 +872,4 @@ G. Extended Graph Analytics:
 Expand the range of graph analytics features, including community detection, centrality
 measures, and clustering algorithms, to offer a more comprehensive network analysis
 toolkit.
-55
-7. References
-[1] Divya Srivastva, Madhushi Verma, Jagendra Singh, Influence maximization frameworks,
-performance, challenges and directions on social network: A theoretical study Shashank
-Sheshar Singh ⇑
-Available: https://www.sciencedirect.com/science/article/pii/S1319157821002123
-[2] Yuxin Ye, Yunliang Chen ∗ , Wei Han , Influence maximization in social networks:
-Theories, methods and challenges
-Available: https://www.sciencedirect.com/science/article/pii/S2590005622000972
-56
 
