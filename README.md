@@ -7,7 +7,7 @@ Social media platforms have become an integral part of our daily lives, generati
 
 ### Demo with Video Link
 For a detailed demonstration of how the application works, please check out our demo video on YouTube:
-<h3>[Demo Video](https://youtu.be/Tt0u08Po60s)</h3>
+[Demo Video](https://youtu.be/Tt0u08Po60s)
 
 This demo walks you through the steps of uploading a CSV file, selecting an influence maximization algorithm, setting parameters, and visualizing the influence spread. It also covers interpreting the outputs including the video illustration, network graphs, and summary tables.
 
