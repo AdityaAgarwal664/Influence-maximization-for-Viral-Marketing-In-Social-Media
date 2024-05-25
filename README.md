@@ -59,7 +59,7 @@ To get a copy of the project up and running on your local machine, follow these 
 
 1. **Clone the repository**
    ```sh
-   git clone https://github.com/yourusername/social-media-analysis.git
+   git clone https://github.com/AdityaAgarwal664/Influence-maximization-analytics.git
    ```
 2. **Navigate to the project directory**
    ```sh
