@@ -1,4 +1,4 @@
-# Social Media Analysis Using Graph Theory for Viral Marketing
+# Social Media Analysis Using Graph Theory for Viral Marketing [An A<sup>2</sup> Product]
 
 ## Chapter 1: Introduction
 
